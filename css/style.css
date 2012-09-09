@@ -11,6 +11,8 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 body {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-transform: uppercase;
+  background-color: black;
+  color: white;
 }
 
 #wrapper {
@@ -20,7 +22,7 @@ body {
 
 header, article {
 	font-weight: 800;
-	color: #000;
+	color: white;
 }
 
 header {
@@ -54,12 +56,13 @@ noscript {
 #generate {
 	text-decoration: none;
 	font-size: 20px;
-	color: #000;
+	color: white;
 }
 
 #generate:hover {
-	text-decoration: underline;
-	color: black;
+	text-decoration: none;
+	color: white;
+  text-shadow: 0px 0px 5px white;
 }
 
 aside {
@@ -72,13 +75,6 @@ aside {
 #share li {
 	list-style: none;
 	display: inline;
-}
-
-#share-facebook {}
-#share-twitter {position: relative; top: -1px;}
-.twitter-share-button {
-	font-size: 11px;	
-	color: #000;
 }
 
 footer {
@@ -95,7 +91,7 @@ footer {
 
 footer a {
 	text-decoration: none;
-	color: #000;
+	color: white;
 }
 
 footer a:hover {

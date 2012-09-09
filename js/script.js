@@ -135,5 +135,15 @@ $(document).ready(function(){
 	} else {
 		//console.log("corpus not found");
 	}
+
+  $("#shareThis").click(function() {
+    var intentObj = {
+      "action": "http://webintents.org/share",
+      "type": "text/plain",
+      "data": "I want to work on a " + ""  + ""
+    };
+    var intent = new WebKitIntent(intentObj); 
+    window.navigator.webkitStartActivity(intent); 
+  });
 	
 });

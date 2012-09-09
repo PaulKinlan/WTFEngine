@@ -46,21 +46,21 @@ var templates = [
 ];
 
 var phrases = [
-	"Get your coding shoes on and build a fucking",
-	"Don't need no UML diagram, just get cracking on a fucking",
-	"Get your shit together and get going with a fucking",
-	"This shit will be trending on Twitter - a fucking",
-	"Dinner is for the kind of chumps who couldn't build a fucking",
-	"Make some coffee; you're building a fucking",
-	"Get your fucking CPU crunching on a"
+	"Get your coding shoes on and build a",
+	"Don't need no UML diagram, just get cracking on a ",
+	"Get your shit together and get going with a ",
+	"This shit will be trending on Twitter - a ",
+	"Dinner is for the kind of chumps who couldn't build a ",
+	"Make some coffee; you're building a ",
+	"Get your CPU crunching on a"
 ];
 
 var labels = [
-	"I've already fucking made that",
-	"That breaches a load of fucking copyrights",
-	"No one will fucking use that",
-	"That's not going to fucking work",
-	"Does not fucking compute"
+	"I've already made that",
+	"That breaches a load of copyrights",
+	"No one will use that",
+	"That's not going to work",
+	"Does not compute"
 ];
 
 /*

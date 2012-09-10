@@ -9,5 +9,8 @@
   },
   "icons" : {
     "128": "128.png"
-  }
+  },
+  "permissions": [
+   {"socket": [ "udp-bind::8899", "udp-send-to::*" ]}
+  ]
 }

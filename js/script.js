@@ -123,6 +123,67 @@ function setGenerateLabel() {
 	
 }
 
+function stringToArrayBuffer(text) {
+  var ab = new ArrayBuffer(text.length);
+  var data = new Uint8Array(ab);
+  for(var i=0; i < text.length; i++) {
+    data[i] = text.charCodeAt(i);
+  }
+  return ab;
+}
+
+function arrayBufferToString(ab) {
+  return String.fromCharCode.apply(null, new Uint8Array(ab));
+}
+
+var socket;
+function pollData() {
+  var callback = function(info) {
+    if(info.resultCode > 0) {
+      var data = generateIdea();
+      chrome.socket.sendTo(socket.socketId, stringToArrayBuffer(data), info.address, info.port, function() {});
+    }
+  };
+  chrome.socket.recvFrom(socket.socketId, callback);
+}
+
+var readResponse = function(socketId, callback) {
+  var intervalId = setInterval(function() {
+    chrome.socket.read(socketId, function(data) {
+      if(data.resultCode > 0) {
+        callback(arrayBufferToString(data.data));
+        clearInterval(intervalId);   
+      };
+    });
+  }, 1000);
+};
+
+function requestGenerate(callback) { 
+  callback = callback || function() {};
+  chrome.socket.create('udp', function(socketInfo) {
+    var id = socketInfo.socketId;
+    chrome.socket.connect(id, "127.0.0.1", 8899, function() { 
+      chrome.socket.write(id, stringToArrayBuffer("test"), function(d) {
+        if(d.bytesWritten > 0) {
+          readResponse(id, callback);
+        }
+      });
+    });
+  });
+}
+
+function initNetwork() {
+  chrome.socket.create('udp', function(socketInfo) {
+    console.log("Socket Info", socketInfo);
+    socket = socketInfo;
+    chrome.socket.bind(socketInfo.socketId, '127.0.0.1', 8899, function(bindInfo) {
+      console.log("Bind Info");
+      console.log(bindInfo)
+      setInterval(pollData, 1000);
+    });    
+  });
+}
+
 // ready
 
 $(document).ready(function(){
@@ -145,5 +206,6 @@ $(document).ready(function(){
     var intent = new WebKitIntent(intentObj); 
     window.navigator.webkitStartActivity(intent); 
   });
-	
+
+  initNetwork();
 });
